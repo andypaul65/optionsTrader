@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.optionstrader.options.SignalTranslatorTest" time="0.088" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.optionstrader.signal.SignalIntegrityTest" time="1.024" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -58,6 +58,40 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testTranslateSignals" classname="com.optionstrader.options.SignalTranslatorTest" time="0.045"/>
-  <testcase name="testRepairLogic" classname="com.optionstrader.options.SignalTranslatorTest" time="0.002"/>
+  <testcase name="testNvdaSignals" classname="com.optionstrader.signal.SignalIntegrityTest" time="0.56">
+    <system-err><![CDATA[[main] INFO com.optionstrader.signal.SignalIntegrityTest - Starting Signal Integrity test for NVDA
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Loaded golden-nvda-intraday.json, length: 330878 characters
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Series loaded with 3407 bars
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Generating signals with Ta4jSignalEngine
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - TA4J generated 3207 signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Generating signals with ManualSignalEngine
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Manual generated 3207 signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Comparing TA4J and Manual signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Signal Integrity test for NVDA passed: Identical signals from both engines
+]]></system-err>
+  </testcase>
+  <testcase name="testTslaSignals" classname="com.optionstrader.signal.SignalIntegrityTest" time="0.311">
+    <system-err><![CDATA[[main] INFO com.optionstrader.signal.SignalIntegrityTest - Starting Signal Integrity test for TSLA
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Loaded golden-tsla-intraday.json, length: 318669 characters
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Series loaded with 3322 bars
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Generating signals with Ta4jSignalEngine
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - TA4J generated 3122 signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Generating signals with ManualSignalEngine
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Manual generated 3122 signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Comparing TA4J and Manual signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Signal Integrity test for TSLA passed: Identical signals from both engines
+]]></system-err>
+  </testcase>
+  <testcase name="testPltrSignals" classname="com.optionstrader.signal.SignalIntegrityTest" time="0.148">
+    <system-err><![CDATA[[main] INFO com.optionstrader.signal.SignalIntegrityTest - Starting Signal Integrity test for PLTR
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Loaded golden-pltr-intraday.json, length: 245344 characters
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Series loaded with 2549 bars
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Generating signals with Ta4jSignalEngine
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - TA4J generated 2349 signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Generating signals with ManualSignalEngine
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Manual generated 2349 signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Comparing TA4J and Manual signals
+[main] INFO com.optionstrader.signal.SignalIntegrityTest - Signal Integrity test for PLTR passed: Identical signals from both engines
+]]></system-err>
+  </testcase>
 </testsuite>

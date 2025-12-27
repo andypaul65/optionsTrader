@@ -20,6 +20,7 @@
         <junit.version>5.10.0</junit.version>
         <jackson.version>2.16.1</jackson.version>
         <ta4j.version>0.16</ta4j.version>
+        <slf4j.version>2.0.9</slf4j.version>
     </properties>
 
     <dependencies>
@@ -28,6 +29,18 @@
             <groupId>org.ta4j</groupId>
             <artifactId>ta4j-core</artifactId>
             <version>${ta4j.version}</version>
+        </dependency>
+
+        <!-- SLF4J for logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <!-- Jackson for JSON processing -->
