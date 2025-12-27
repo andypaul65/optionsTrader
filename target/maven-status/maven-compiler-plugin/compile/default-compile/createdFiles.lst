@@ -1,4 +1,5 @@
 com/optionstrader/signal/Ta4jSignalEngine.class
+com/optionstrader/options/RepairLogic.class
 com/optionstrader/ingestion/StandardMassiveDataLoader$1.class
 com/optionstrader/ingestion/StandardMassiveDataLoader.class
 com/optionstrader/options/SignalTranslator.class

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RefereeTest {
 
     private String loadSampleJson() throws IOException {
-        return Files.readString(Paths.get("src/test/resources/sample-bars.json"));
+        return Files.readString(Paths.get("src/test/resources/golden-tsla-intraday.json"));
     }
 
     @Test

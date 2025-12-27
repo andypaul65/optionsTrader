@@ -9,6 +9,8 @@ import org.ta4j.core.BaseBarSeries;
 import org.ta4j.core.num.DecimalNum;
 
 import java.time.Duration;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
@@ -28,18 +30,20 @@ public class RecordBasedMassiveDataLoader implements MassiveDataLoader {
     @Override
     public BarSeries loadData(String json) {
         try {
-            List<Map<String, Object>> records = objectMapper.readValue(json, new TypeReference<List<Map<String, Object>>>() {});
+            Map<String, Object> root = objectMapper.readValue(json, new TypeReference<Map<String, Object>>() {});
+            List<Map<String, Object>> results = (List<Map<String, Object>>) root.get("results");
             BarSeries series = new BaseBarSeries();
-            for (Map<String, Object> record : records) {
-                ZonedDateTime timestamp = ZonedDateTime.parse((String) record.get("timestamp"));
-                double open = ((Number) record.get("open")).doubleValue();
-                double high = ((Number) record.get("high")).doubleValue();
-                double low = ((Number) record.get("low")).doubleValue();
-                double close = ((Number) record.get("close")).doubleValue();
-                long volume = ((Number) record.get("volume")).longValue();
+            for (Map<String, Object> result : results) {
+                long timestampMs = ((Number) result.get("t")).longValue();
+                double open = ((Number) result.get("o")).doubleValue();
+                double high = ((Number) result.get("h")).doubleValue();
+                double low = ((Number) result.get("l")).doubleValue();
+                double close = ((Number) result.get("c")).doubleValue();
+                long volume = ((Number) result.get("v")).longValue();
+                ZonedDateTime zdt = Instant.ofEpochMilli(timestampMs).atZone(ZoneId.systemDefault());
                 BaseBar bar = new BaseBar(
                     Duration.ofMinutes(1),
-                    timestamp,
+                    zdt,
                     DecimalNum.valueOf(open),
                     DecimalNum.valueOf(high),
                     DecimalNum.valueOf(low),
