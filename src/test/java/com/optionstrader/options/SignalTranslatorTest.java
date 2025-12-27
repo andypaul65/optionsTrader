@@ -17,8 +17,8 @@ public class SignalTranslatorTest {
     public void testTranslateSignals() {
         // Create mock option chain
         List<OptionContract> contracts = List.of(
-            new OptionContract("TSLA", "CALL", 100.0, LocalDate.now().plusDays(35), 0.32, 35, 5.0),
-            new OptionContract("TSLA", "PUT", 100.0, LocalDate.now().plusDays(40), -0.28, 40, 4.0)
+            new OptionContract("TSLA", "CALL", 100.0, LocalDate.now().plusDays(35), 0.32, 35, 5.0, 0.01),
+            new OptionContract("TSLA", "PUT", 100.0, LocalDate.now().plusDays(40), -0.28, 40, 4.0, 0.01)
         );
         OptionChain chain = new OptionChain("TSLA", contracts);
 
@@ -37,7 +37,7 @@ public class SignalTranslatorTest {
     public void testRepairLogic() {
         RepairLogic repairLogic = new RepairLogic();
 
-        OptionContract call = new OptionContract("TSLA", "CALL", 100.0, LocalDate.now().plusDays(35), 0.32, 35, 5.0);
+        OptionContract call = new OptionContract("TSLA", "CALL", 100.0, LocalDate.now().plusDays(35), 0.32, 35, 5.0, 0.01);
         TradeDecision trade = new TradeDecision(call, "BUY");
 
         // Current price with >20% loss
@@ -46,7 +46,7 @@ public class SignalTranslatorTest {
         assertEquals("ROLL", suggestion);
 
         // For put
-        OptionContract put = new OptionContract("TSLA", "PUT", 100.0, LocalDate.now().plusDays(40), -0.28, 40, 4.0);
+        OptionContract put = new OptionContract("TSLA", "PUT", 100.0, LocalDate.now().plusDays(40), -0.28, 40, 4.0, 0.01);
         TradeDecision tradePut = new TradeDecision(put, "BUY");
         double currentPricePut = 4.0 * 0.75;
         String suggestionPut = repairLogic.suggestRepair(tradePut, currentPricePut);

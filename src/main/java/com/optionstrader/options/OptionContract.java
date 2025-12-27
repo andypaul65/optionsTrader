@@ -12,7 +12,8 @@ public record OptionContract(
     LocalDate expiration,
     double delta,
     int dte,
-    double price
+    double price,
+    double theta
 ) {
     // Additional methods if needed
 }

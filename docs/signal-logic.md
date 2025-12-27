@@ -43,6 +43,44 @@ sequenceDiagram
     Signal-->>SignalEngine: Signal output
 ```
 
+## OptionBacktester Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant BarSeries
+    participant Strategy
+    participant OptionBacktester
+    participant OptionChain
+    participant OptionSelector
+    participant TradeManager
+
+    BarSeries->>Strategy: Provide bar data
+    Strategy->>OptionBacktester: Check shouldEnter(i)
+    OptionBacktester->>OptionChain: Get historical chain for date
+    OptionChain-->>OptionBacktester: Contracts
+    OptionBacktester->>OptionSelector: Select contract (delta ~0.30, DTE 30-45)
+    OptionSelector-->>OptionBacktester: Selected contract
+    OptionBacktester->>TradeManager: Open position
+    TradeManager-->>OptionBacktester: Position opened
+    loop For each bar while open
+        OptionBacktester->>TradeManager: Update PnL (delta + theta decay)
+        TradeManager-->>OptionBacktester: Updated PnL
+        alt PnL < -20%
+            OptionBacktester->>Strategy: Check bullish trend
+            Strategy-->>OptionBacktester: Trend status
+            alt Still bullish
+                OptionBacktester->>TradeManager: Execute roll
+            else
+                OptionBacktester->>TradeManager: Hard stop
+            end
+        else
+            OptionBacktester->>Strategy: Check shouldExit(i)
+            Strategy-->>OptionBacktester: Exit signal
+            OptionBacktester->>TradeManager: Close position
+        end
+    end
+```
+
 ## Performance Notes
 
 The signal engine is designed to handle high-throughput processing up to 10,000 events/sec. Virtual Threads (available in Java 21 preview) can be utilized for concurrent signal generation if needed.

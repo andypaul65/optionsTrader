@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.optionstrader.signal.SignalIntegrityTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.024 s -- in com.optionstrader.signal.SignalIntegrityTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.093 s -- in com.optionstrader.signal.SignalIntegrityTest
