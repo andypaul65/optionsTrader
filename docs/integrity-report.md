@@ -1,4 +1,7 @@
-# Integrity Report
+## Option Chain Retrieval (Massive) - 2025-12-28
+- **Accuracy**: Parity confirmed across Standard, Streaming, and Record-based loaders.
+- **CLI**: `TickerSummaryService` implemented for ticker-specific summaries with filtering.
+
 
 ## Referee Test Results
 
